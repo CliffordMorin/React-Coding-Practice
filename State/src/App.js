@@ -5,7 +5,7 @@ function App() {
 	return (
 		<div className="App">
 			<Game name="Clifford" />
-			<Random maxNum="999" color="#0000FF" />
+			<Random maxNum="999" />
 		</div>
 	);
 }

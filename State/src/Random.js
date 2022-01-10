@@ -13,7 +13,7 @@ class Random extends Component {
 			let rand = Math.floor(Math.random() * this.props.maxNum);
 			let randColor = Math.floor(Math.random() * 16777215).toString(16);
 			this.setState({ num: rand, color: '#' + randColor });
-		}, 1000);
+		}, 3000);
 	}
 	render() {
 		return <h1 style={{ color: this.state.color }}>{this.state.num}</h1>;
