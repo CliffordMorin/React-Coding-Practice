@@ -2,11 +2,13 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Login from "./Login";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const counter = useSelector((state) => state.counter);
   const randomColor = useSelector((state) => state.colorGen);
   const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
     <div className='App'>
       <header className='App-header'>
@@ -17,7 +19,7 @@ function App() {
         <button
           onClick={() => {
             dispatch({ type: "INCREMENT" });
-            dispatch({ type: "RANDOM_COLOR" });
+            if (isAuthenticated) dispatch({ type: "RANDOM_COLOR" });
           }}
         >
           {" "}
@@ -26,7 +28,7 @@ function App() {
         <button
           onClick={() => {
             dispatch({ type: "DECREMENT" });
-            dispatch({ type: "RANDOM_COLOR" });
+            if (isAuthenticated) dispatch({ type: "RANDOM_COLOR" });
           }}
         >
           {" "}

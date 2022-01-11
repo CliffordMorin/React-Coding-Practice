@@ -1,22 +1,40 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = () => {
   const isLogged = useSelector((state) => state.isLogged);
   const dispatch = useDispatch();
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
     <div>
-      {isLogged ? (
+      {isAuthenticated ? (
         <>
-          <h1>You are signed in!!!!</h1>
-          <button onClick={() => dispatch({ type: "SIGN_IN" })}>
+          <h1>Hey, {user.name} welcome to the Redux Counter!</h1>
+          <button
+            onClick={() => {
+              dispatch({ type: "SIGN_IN" });
+              logout({ returnTo: window.location.origin });
+            }}
+          >
             Sign Out
           </button>
         </>
+      ) : isLoading ? (
+        <div>Loading.....</div>
       ) : (
         <>
-          <h1>You need to Sign In!!</h1>
-          <button onClick={() => dispatch({ type: "SIGN_IN" })}>Sign In</button>
+          <h1>Sign In to make the counter magic!</h1>
+          <button
+            onClick={() => {
+              dispatch({ type: "SIGN_IN" });
+              loginWithRedirect();
+            }}
+          >
+            Sign In
+          </button>
         </>
       )}
     </div>
