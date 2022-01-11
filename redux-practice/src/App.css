@@ -7,6 +7,21 @@
   pointer-events: none;
 }
 
+button{
+  background-color: #61dafb;
+  font-size: 25px;
+  border: #000000;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 60px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+button:hover{
+  background-color: #005af5;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -21,7 +36,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ffffff;
 }
 
 .App-link {
